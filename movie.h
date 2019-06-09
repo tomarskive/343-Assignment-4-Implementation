@@ -18,26 +18,37 @@
 #include "nodedata.h"
 using namespace std;
 
-class Movie : NodeData
+class Movie : public NodeData
 {
     friend ostream & operator<<(ostream &, const Movie &);
 
     public:
         Movie();
         Movie(int stock, string directorFirstName, string directorLastName, string title, int year); // creates a movie object with stock, director, title, and year
-        ~Movie(); // destroys the movie object
+      //  ~Movie(); // destroys the movie object
 
-        virtual Movie& operator=(const Movie &)= 0;
+        virtual void display() = 0;
+
+        // virtual NodeData* copyHelp(Classic*) = 0;
+        virtual bool compare(const NodeData& other) const;
+         virtual NodeData& operator=(const NodeData &) =0;
+         virtual void copyHelp(const NodeData &);
         //virtual int getStock(); // returns the stock for the movie
         //string getDirector(); // returns the director's name for that drama
        // string getTitle(); // returns the title of the movie
        // int getYear(); // returns the year of the drama released
       //  void increaseStock(); // increase the stock for that movie
 
-        //virtual bool operator== (const Movie&) = 0; // virtual function that acts only as an interface. checks if 2 movie objects are equal to each other
-       // virtual bool operator!= (const Movie&) = 0; // virtual function that acts only as an interface. checks if 2 movie objects are not equal to each other
-        //virtual bool operator> (const Movie&) = 0; // virtual function that acts only as an interface. checks if the lhs object is bigger than rhs
-      //  virtual bool operator< (const Movie&) = 0; // virtual function that acts only as an interface. checks if rhs object isi smaller than rhs
+      // virtual function that acts only as an interface. checks if 2 movie objects are equal to each other
+        virtual bool operator==(const NodeData &) const = 0;
+        // virtual function that acts only as an interface. checks if 2 movie objects are not equal to each other
+        virtual bool operator!= (const NodeData&) const = 0;
+
+        // virtual function that acts only as an interface. checks if rhs object isi smaller than rhs
+        virtual bool operator<(const NodeData &) const = 0;
+        virtual bool operator> (const NodeData&) const = 0; // virtual function that acts only as an interface. checks if the lhs object is bigger than rhs
+        virtual bool operator<=(const NodeData &) const = 0;
+        virtual bool operator>=(const NodeData &) const = 0;
 
     protected:
         int stock; // stock of the movie

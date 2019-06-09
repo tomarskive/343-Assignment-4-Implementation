@@ -10,26 +10,147 @@ Classic::Classic(int stock, string directorFirstName, string directorLastName,
   this->month = month;
 }
 
-Classic::~Classic()
-{
+ Classic::Classic() : Movie()
+ {
+   this->majorActorFirstName = "";
+   this->majorActorLastName = "";
+   this->month = 0;
+ }
 
+ int Classic::getStock()
+ {
+   return stock;
+ }
+
+string Classic::getMajorActorFirstName()
+{
+  return majorActorFirstName;
 }
 
- Movie& Classic::operator=(const Classic & rhsMovie)
+string Classic::getMajorActorLastName()
 {
-  if(this == &rhsMovie)
+  return majorActorLastName;
+}
+
+bool Classic::operator==(const NodeData & other) const
+{
+  if(typeid(*this)!= typeid(other))
   {
+    return false;
+  }
+
+  // const Movie& otherMovie = dynamic_cast<const Movie&>(other);
+
+  if(!Movie::compare(other))
+  {
+    return false;
+  }
+  const Classic& otherMovie2 = dynamic_cast<const Classic&>(other);
+  return(majorActorFirstName == otherMovie2.majorActorFirstName ||
+    majorActorLastName == otherMovie2.majorActorLastName ||
+    month == otherMovie2.month);
+
+}
+bool Classic::operator!=(const NodeData& other) const
+{
+  return !(*this==other);
+}
+
+
+bool Classic::operator<(const NodeData &other) const
+{
+
+  //cout<<"HERE"<<endl;
+  const Classic& otherMovie = dynamic_cast<const Classic&>(other);
+
+  if(this->year < otherMovie.year)
+  {
+    return true;
+  }
+
+  if(this->year == otherMovie.year)
+  {
+    //cout<<"got here"<<endl;
+    if(this->month < otherMovie.month)
+    {
+      return true;
+    }
+    if(this->month == otherMovie.month)
+    {
+      if((this->majorActorFirstName + " " + this->majorActorLastName) <
+      (otherMovie.majorActorFirstName + " " + otherMovie.majorActorLastName))
+      {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+bool Classic::operator>(const NodeData &other) const
+{
+
+    //cout<<"HERE"<<endl;
+    const Classic& otherMovie = dynamic_cast<const Classic&>(other);
+
+    if(this->year > otherMovie.year)
+    {
+      return true;
+    }
+
+    if(this->year == otherMovie.year)
+    {
+      //cout<<"got here"<<endl;
+      if(this->month > otherMovie.month)
+      {
+        return true;
+      }
+      if(this->month == otherMovie.month)
+      {
+        if((this->majorActorFirstName + " " + this->majorActorLastName) >
+        (otherMovie.majorActorFirstName + " " + otherMovie.majorActorLastName))
+        {
+          return true;
+        }
+      }
+    }
+  return false;
+}
+
+bool Classic::operator<=(const NodeData &other) const
+{
+  return !((*this) > other);
+}
+
+bool Classic::operator>=(const NodeData &other) const
+{
+  return !(*this < other);
+}
+
+NodeData& Classic::operator=(const NodeData &other)
+{
+
+  if(typeid(*this)!= typeid(other))
+  {
+    cout<<"type mismatch"<<endl;
     return *this;
   }
-  this->stock = rhsMovie.stock;
-  this->directorFirstName = rhsMovie.directorFirstName;
-  this->directorLastName = rhsMovie.directorLastName;
-  this->title = rhsMovie.title;
-  this->year = rhsMovie.year;
-  this->month = rhsMovie.month;
-  this->majorActorFirstName = rhsMovie.majorActorFirstName;
-  this->majorActorLastName = rhsMovie.majorActorLastName;
+  const Movie& otherMovie = dynamic_cast<const Movie&>(other);
+  Movie::copyHelp(otherMovie);
+
+  const Classic& otherMovie2 = dynamic_cast<const Classic&>(other);
+  this->majorActorFirstName = otherMovie2.majorActorFirstName;
+  this->majorActorLastName = otherMovie2.majorActorLastName;
+  this->month = otherMovie2.month;
   return *this;
+}
+
+void Classic::display()
+{
+  cout << stock << " " << directorFirstName << " ";
+  cout << directorLastName << " " << title <<" ";
+  cout << majorActorFirstName << " " << majorActorLastName;
+  cout << " " << month << " " << year << endl;
 }
 
 ostream& operator<<(ostream& output, const Classic& movie) {

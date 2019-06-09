@@ -15,10 +15,12 @@
 #ifndef CLASSIC_H
 #define CLASSIC_H
 #include "movie.h"
+#include <typeinfo>
+#include <string>
 
 using namespace std;
 
-class Classic : Movie
+class Classic : public Movie
 {
   friend ostream & operator<<(ostream &, const Classic &);
 public:
@@ -33,36 +35,38 @@ public:
     int month, int year);
   //default destructor. No extra memory should be allocated for this, so this
   //does nothing.
-  ~Classic();
+  //~Classic();
 
   //overrides the parent class's getStock function since a classic object
   //may have more than one instance of the same movie and the total stock
   //will be the sum of the instance's stock attributes.
-  //int getStock();
+  int getStock();
 
   //returns a string that contains the major actor's first name
-  //string getMajorActorFirstName();
+  string getMajorActorFirstName();
 
   //returns a string that contains the major actor's last name
-  //string getMajorActorLastName();
+  string getMajorActorLastName();
 
   //prints out all of the data stored in this obect in the proper order.
-//  void display();
+  void display();
 
-  virtual Movie& operator=(const Classic &) = 0;
+  NodeData& operator=(const NodeData &);
   //Overloaded equality operator. Compares two classic movies. Returns true if they are equal
-  //bool operator==(const Movie&) const;
+  bool operator==(const NodeData &) const;
 
   //Overloaded inequality operator. Compares two classic movies. Returns false if they are equal.
-//  bool operator!=(const Movie&) const;
+  bool operator!=(const NodeData&) const;
 
   //Overloaded < operator. compares two classic movies. Returns true if
   //lhs movie is less than rhs movie.
-//  bool operator<(const Movie&) const;
+  bool operator<(const NodeData &) const;
 
   //Overloaded > operator. Compares two classic movies. Returns true if  lhs
   // movie is greater than rhs movie.
-//  bool operator>(const Movie&) const;
+  bool operator>(const NodeData &) const;
+  bool operator<=(const NodeData &) const;
+  bool operator>=(const NodeData &) const;
 
 private:
 
