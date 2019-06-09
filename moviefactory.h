@@ -14,16 +14,23 @@
 #ifndef MOVIEFACTORY_H
 #define MOVIEFACTORY_H
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include "movie.h"
+#include "classic.h"
+#include "drama.h"
 
 using namespace std;
 
 class MovieFactory {
 public:
 	MovieFactory();		// Constructor
-	~MovieFactory();	// Destructor
+	//~MovieFactory();	// Destructor
 
 	// Instantiating coresponding Movie object
-	static Movie* createMovie(ifstream& in);
+	//static Movie* createMovie(ifstream& in);
+	static Movie* createMovie(string in);
 
 };
 #endif

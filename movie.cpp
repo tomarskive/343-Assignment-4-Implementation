@@ -50,6 +50,28 @@ Movie::Movie(int stock, string directorFirstName, string directorLastName,
     this->title = otherMovie.title;
     this->year = otherMovie.year;
   }
+
+  void Movie::display()
+  {
+    cout << stock << " " << directorFirstName << " ";
+    cout << directorLastName << " " << title <<" " <<year;
+  }
+
+  void Movie::serialize(ostream& output) const
+  {
+    output << stock << " " << directorFirstName << " ";
+    output << directorLastName << " " << title <<" " << year;
+  }
+
+  void Movie::setData(int stock, string directorFirstName,
+    string directorLastName, string title, int year)
+  {
+    this->stock = stock;
+    this->directorFirstName = directorFirstName;
+    this->directorLastName = directorLastName;
+    this->title = title;
+    this->year = year;
+  }
 // Movie::~Movie()
 // {
 //

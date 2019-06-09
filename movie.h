@@ -15,6 +15,7 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 #include<string>
+#include <typeinfo>
 #include "nodedata.h"
 using namespace std;
 
@@ -27,7 +28,7 @@ class Movie : public NodeData
         Movie(int stock, string directorFirstName, string directorLastName, string title, int year); // creates a movie object with stock, director, title, and year
       //  ~Movie(); // destroys the movie object
 
-        virtual void display() = 0;
+        virtual void display();
 
         // virtual NodeData* copyHelp(Classic*) = 0;
         virtual bool compare(const NodeData& other) const;
@@ -35,6 +36,8 @@ class Movie : public NodeData
          virtual void copyHelp(const NodeData &);
          virtual int getStock(); // returns the stock for the movie
          virtual void serialize(ostream& output) const = 0;
+         virtual void setData(int stock, string directorFirstName,
+           string directorLastName, string title, int year);
         //string getDirector(); // returns the director's name for that drama
        // string getTitle(); // returns the title of the movie
        // int getYear(); // returns the year of the drama released

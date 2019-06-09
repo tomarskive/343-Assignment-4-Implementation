@@ -1,8 +1,14 @@
 #include "drama.h"
 
+Drama::Drama() : Movie()
+{
+
+}
+
 Drama::Drama(int stock, string directorFirstName, string directorLastName,
   string title, int year) : Movie(stock, directorFirstName,directorLastName,
-  title, year);
+  title, year)
+  {};
 
 void Drama::display()
 {
@@ -17,6 +23,7 @@ void Drama::serialize(ostream& output) const
 NodeData& Drama::operator=(const NodeData &other)
 {
   Movie::copyHelp(other);
+  return *this;
 }
 
 bool Drama::operator==(const NodeData &other) const
@@ -27,20 +34,20 @@ bool Drama::operator==(const NodeData &other) const
     return false;
   }
 
-  return Movie::compare(other))
+  return Movie::compare(other);
 
 }
 
 bool Drama::operator!=(const NodeData &other) const
 {
-  return !(*this = other);
+  return !(*this == other);
 }
 
-bool Drama::operator<(const NodeData &) const
+bool Drama::operator<(const NodeData &other) const
 {
   const Drama& otherMovie = dynamic_cast<const Drama&>(other);
 
-  string thisDirector = this->(directorFirstName + " " + directorLastName);
+  string thisDirector = (this->directorFirstName + " " + this->directorLastName);
   string otherDirector = otherMovie.directorFirstName + " "
     + otherMovie.directorLastName;
 
@@ -60,11 +67,11 @@ bool Drama::operator<(const NodeData &) const
   return false;
 }
 
-bool Drama::operator>(const NodeData &) const
+bool Drama::operator>(const NodeData &other) const
 {
   const Drama& otherMovie = dynamic_cast<const Drama&>(other);
 
-  string thisDirector = this->(directorFirstName + " " + directorLastName);
+  string thisDirector = (directorFirstName + " " + directorLastName);
   string otherDirector = otherMovie.directorFirstName + " "
     + otherMovie.directorLastName;
 

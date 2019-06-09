@@ -1,5 +1,8 @@
 #include "bintree.h"
 #include "classic.h"
+#include "drama.h"
+#include "moviefactory.h"
+
 #include <iostream>
 #include <iostream>
 #include <typeinfo>
@@ -42,5 +45,17 @@ int main()
   test1.insert(movie1);
   cout<<test1<<endl;
 
+  cout<<"testing Drama creator"<<endl;
+  NodeData* movie6 = new Drama(10, "Barry", "Levinson", "Good Morning Vietnam", 1988);
+  cout<< *movie6<<endl;
+  cout<<"\n\n"<<endl;
+  cout<<"testing movie factory"<<endl;
+  NodeData* movie7;
+  NodeData* movie8;
+  MovieFactory MF;
+  movie7 = MF.createMovie("C, 10, Michael Curtiz, Casablanca, Ingrid Bergman 8 1942");
+  cout<< *movie7<<endl;
+  movie8 = MF.createMovie("D, 10, Barry Levinson, Good Morning Vietnam, 1988");
+  cout<< *movie8<<endl;
   return 0;
 }
