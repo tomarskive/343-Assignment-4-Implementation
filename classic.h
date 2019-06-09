@@ -40,7 +40,7 @@ public:
   //overrides the parent class's getStock function since a classic object
   //may have more than one instance of the same movie and the total stock
   //will be the sum of the instance's stock attributes.
-  int getStock();
+  virtual int getStock();
 
   //returns a string that contains the major actor's first name
   string getMajorActorFirstName();
@@ -50,6 +50,8 @@ public:
 
   //prints out all of the data stored in this obect in the proper order.
   void display();
+
+  void serialize(ostream& output) const;
 
   NodeData& operator=(const NodeData &);
   //Overloaded equality operator. Compares two classic movies. Returns true if they are equal

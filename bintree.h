@@ -16,7 +16,7 @@
 #define BIN_TREE_H
 
 #include "nodedata.h"
-
+#include "classic.h"
 class BinTree
 {
   /*overloaded << operator. Outputs the entire tree in order. If the tree is

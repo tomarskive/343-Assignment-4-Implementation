@@ -35,6 +35,10 @@ Movie::Movie(int stock, string directorFirstName, string directorLastName,
     && directorLastName == otherMovie.directorLastName && title == otherMovie.title
     && year == otherMovie.year);
   }
+   int Movie::getStock()
+   {
+     return stock;
+   }
 
   void Movie::copyHelp(const NodeData &other)
   {

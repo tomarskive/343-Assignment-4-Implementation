@@ -37,7 +37,10 @@ int main()
   cout<< (*movie2).getStock()<<endl;
 
   cout<<"\n\n Creating a Bin Tree"<<endl;
-  //BinTree test1;
-  //cout<<test1<<endl;
+  BinTree test1;
+  cout<<test1<<endl;
+  test1.insert(movie1);
+  cout<<test1<<endl;
+
   return 0;
 }

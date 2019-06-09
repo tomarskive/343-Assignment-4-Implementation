@@ -152,6 +152,13 @@ void Classic::display()
   cout << majorActorFirstName << " " << majorActorLastName;
   cout << " " << month << " " << year << endl;
 }
+void Classic::serialize(ostream& output) const
+{
+  output << stock << " " << directorFirstName << " ";
+  output << directorLastName << " " << title <<" ";
+  output << majorActorFirstName << " " << majorActorLastName
+  << " " << month << " " << year;
+}
 
 ostream& operator<<(ostream& output, const Classic& movie) {
   	output << movie.stock << " " << movie.directorFirstName << " ";

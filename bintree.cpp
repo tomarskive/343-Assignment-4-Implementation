@@ -117,7 +117,7 @@ bool BinTree::insert(const NodeData* n)
   if(root==NULL)
   {
     root = new Node;
-    root->data = new NodeData;
+    root->data = new Classic;
     *root->data = *n;
     root->left = NULL;
     root->right = NULL;
@@ -144,7 +144,7 @@ bool BinTree::insert(const NodeData* n)
     if(!current)
     {
       current = new Node;
-      current->data = new NodeData;
+      current->data = new Classic;
       *current->data = *n;
       current->left = NULL;
       current->right = NULL;
@@ -168,9 +168,9 @@ bool BinTree::insert(const NodeData* n)
   hard coded displaying to standard output.
   Preconditions: NONE
   Postconditions: BinTree remains unchanged.*/
-void BinTree::displaySideways() const {
-	sideways(root, 0);
-}//end displaySideways()
+// void BinTree::displaySideways() const {
+// 	sideways(root, 0);
+// }//end displaySideways()
 
 //-----------------------------------------------------------------------------
 /*included for debugging purposes. Checks if the BT is empty. If it is,
@@ -244,20 +244,20 @@ void BinTree::inOrderHelper(const Node *current, ostream &result) const
 /* Helper method for displaySideways
  Preconditions: NONE
  Postconditions: BinTree remains unchanged.*/
-void BinTree::sideways(Node* current, int level) const {
-	if (current != NULL) {
-		level++;
-		sideways(current->right, level);
-
-		// indent for readability, 4 spaces per depth level
-		for (int i = level; i >= 0; i--) {
-			cout << "    ";
-		}
-
-		cout << *current->data << endl;        // display information of object
-		sideways(current->left, level);
-	}
-}//end sideways(Node* current, int level)
+// void BinTree::sideways(Node* current, int level) const {
+// 	if (current != NULL) {
+// 		level++;
+// 		sideways(current->right, level);
+//
+// 		// indent for readability, 4 spaces per depth level
+// 		for (int i = level; i >= 0; i--) {
+// 			cout << "    ";
+// 		}
+//
+// 		cout << *current->data << endl;        // display information of object
+// 		sideways(current->left, level);
+// 	}
+// }//end sideways(Node* current, int level)
 
 //-----------------------------------------------------------------------------
 /*helper functon for the destructor. Frees both the NodeData and
@@ -288,7 +288,7 @@ void BinTree::copyHelper(Node*& current, Node* prev, const Node* otherCurrent,
   {
     //create a new Node and copy over all the data
     current = new Node;
-    current->data = new NodeData;
+    current->data = new Classic;
     *current->data = *otherCurrent->data;
     current->left = NULL;
     current->right = NULL;
@@ -408,7 +408,7 @@ void BinTree::toArrayHelper(const Node* current, NodeData* array [], int& index)
     //inorder traversal
     toArrayHelper(current->left, array, index);
     index = index+1;
-    NodeData* temp = new NodeData;
+    NodeData* temp = new Classic;
     *temp = *current->data;
     array[index] = temp;
     toArrayHelper(current->right, array, index);
@@ -426,7 +426,7 @@ void BinTree::balance(int low, int high, Node*& current, NodeData* array[])
   }
   current = new Node;
   int mid = (low+high)/2;
-  current->data = new NodeData;
+  current->data = new Classic;
   *current->data = *array[mid];
   current->left = NULL;
   current->right = NULL;

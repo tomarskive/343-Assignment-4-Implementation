@@ -52,7 +52,7 @@ NodeData::~NodeData() { }            // needed so strings are deleted properly
 // }
 //
 // //-------------------------- operator<< --------------------------------------
-// ostream& operator<<(ostream& output, const NodeData& nd) {
-// 	output << nd.data;
-// 	return output;
-// }
+ostream& operator<<(ostream& output, const NodeData& nd) {
+	nd.serialize(output);
+	return output;
+}

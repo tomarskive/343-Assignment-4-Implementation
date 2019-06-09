@@ -33,7 +33,8 @@ class Movie : public NodeData
         virtual bool compare(const NodeData& other) const;
          virtual NodeData& operator=(const NodeData &) =0;
          virtual void copyHelp(const NodeData &);
-        //virtual int getStock(); // returns the stock for the movie
+         virtual int getStock(); // returns the stock for the movie
+         virtual void serialize(ostream& output) const = 0;
         //string getDirector(); // returns the director's name for that drama
        // string getTitle(); // returns the title of the movie
        // int getYear(); // returns the year of the drama released
